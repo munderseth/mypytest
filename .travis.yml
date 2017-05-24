@@ -14,23 +14,23 @@ env:
     - RESULTS=results.xml{testing}
  
   matrix:
-     - TESTENV=coveralls RESULTS="results.xml{testing} [$TESTENV]coverage.xml"
-     - TESTENV=linting RESULTS=analysis.log{lint} #rst-output.txt
-     - TESTENV=py26 
-     - TESTENV=py27 
-     - TESTENV=py33 
-     - TESTENV=py34 
-     - TESTENV=py35 
-     - TESTENV=pypy 
-     - TESTENV=py27-pexpect 
-     - TESTENV=py27-xdist 
-     - TESTENV=py27-trial 
-     - TESTENV=py35-pexpect 
-     - TESTENV=py35-xdist 
-     - TESTENV=py35-trial 
-     - TESTENV=py27-nobyte 
-     - TESTENV=doctesting RESULTS=doc/results*.xml
-  #  - TESTENV=freeze
+#     - TESTENV=coveralls RESULTS="results.xml{testing} [$TESTENV]coverage.xml"
+      - TESTENV=linting RESULTS=analysis.log{lint} #rst-output.txt
+#     - TESTENV=py26 
+#     - TESTENV=py27 
+#     - TESTENV=py33 
+#     - TESTENV=py34 
+#     - TESTENV=py35 
+#     - TESTENV=pypy 
+#     - TESTENV=py27-pexpect 
+#     - TESTENV=py27-xdist 
+#     - TESTENV=py27-trial 
+#     - TESTENV=py35-pexpect 
+#     - TESTENV=py35-xdist 
+#     - TESTENV=py35-trial 
+#     - TESTENV=py27-nobyte 
+#    - TESTENV=doctesting RESULTS=doc/results*.xml
+     - TESTENV=freeze
   #  - TESTENV=docs 
 
 matrix:
