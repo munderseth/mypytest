@@ -34,5 +34,5 @@ env:
 #    - TESTENV=docs 
 
 script:
-  - tox --recreate -e $TESTENV |& tee freeze.log ; export EXIT = ${PIPESTATUS[0]}; test EXIT -eq 0
+  - tox --recreate -e $TESTENV |& tee freeze.log ; export EXIT=${PIPESTATUS[0]}; test EXIT -eq 0
   - testspace  "freeze.log{$EXIT:Does this really work OK?}"
