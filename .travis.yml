@@ -15,7 +15,7 @@ env:
  
   matrix:
 #     - TESTENV=coveralls RESULTS="results.xml{testing} [$TESTENV]coverage.xml"
-     - TESTENV=linting RESULTS=analysis.log{lint} #rst-output.txt
+#     - TESTENV=linting RESULTS=analysis.log{lint} #rst-output.txt
 #     - TESTENV=py26 
 #     - TESTENV=py27 
 #     - TESTENV=py33 
@@ -34,5 +34,5 @@ env:
 #    - TESTENV=docs 
 
 script:
-  - tox --recreate -e $TESTENV
-  - testspace [$TESTENV]$RESULTS 
+  - tox --recreate -e $TESTENV |& tee freeze.log ; export EXIT-CODE = ${PIPESTATUS[0]}; test EXIT-CODE -eq 0
+  - testspace  "freeze.log{$EXIT-CODE:Does this really work OK?}"
