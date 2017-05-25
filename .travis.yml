@@ -12,10 +12,9 @@ install:
 env:
   global:
     - RESULTS=results.xml{testing}
- 
   matrix:
-     - TESTENV=coveralls RESULTS="results.xml{testing} [$TESTENV]coverage.xml"
-     - TESTENV=linting RESULTS=analysis.log{lint} #rst-output.txt
+#     - TESTENV=coveralls 
+#     - TESTENV=linting 
      - TESTENV=py26 
      - TESTENV=py27 
      - TESTENV=py33 
@@ -29,9 +28,9 @@ env:
      - TESTENV=py35-xdist 
      - TESTENV=py35-trial 
      - TESTENV=py27-nobyte 
-     - TESTENV=doctesting RESULTS=doc/results*.xml
-  #  - TESTENV=freeze
-  #  - TESTENV=docs 
+#     - TESTENV=doctesting 
+#     - TESTENV=freeze
+#     - TESTENV=docs 
 
 matrix:
   include:
@@ -42,4 +41,6 @@ matrix:
 
 script:
   - tox --recreate -e $TESTENV
+
+after_script:
   - testspace [$TESTENV]$RESULTS 
