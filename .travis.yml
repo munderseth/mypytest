@@ -13,8 +13,8 @@ env:
   global:
     - RESULTS=results.xml{testing}
   matrix:
-#     - TESTENV=coveralls 
-#     - TESTENV=linting 
+     - TESTENV=coveralls 
+     - TESTENV=linting 
      - TESTENV=py26 
      - TESTENV=py27 
      - TESTENV=py33 
@@ -28,9 +28,9 @@ env:
      - TESTENV=py35-xdist 
      - TESTENV=py35-trial 
      - TESTENV=py27-nobyte 
-#     - TESTENV=doctesting 
-#     - TESTENV=freeze
-#     - TESTENV=docs 
+     - TESTENV=doctesting 
+     - TESTENV=freeze
+     - TESTENV=docs 
 
 matrix:
   include:
@@ -43,4 +43,7 @@ script:
   - tox --recreate -e $TESTENV
 
 after_script:
-  - testspace [$TESTENV]$RESULTS 
+  - |
+    if [[ $TESTENV == *"py"* ]]; then
+      testspace [$TESTENV]$RESULTS
+    fi
