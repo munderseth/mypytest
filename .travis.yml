@@ -2,11 +2,11 @@ sudo: false
 language: python
 python:
   - '3.5'
-  
+
 install:
   - pip install -U tox
   - mkdir -p $HOME/bin
-  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | tar -zxvf- -C $HOME/bin
+  - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | tar -zxvf- -C $HOME/bin
   - testspace config url http://mark.stridespace.com
 
 env:
@@ -42,6 +42,10 @@ script:
 
 after_script:
   - |
-    if [[ $TESTENV == "py"* ]]; then
-      testspace testing/results.xml{testing}
+    if [[ $TESTENV == "py"* || $TESTENV = "coveralls" ]]; then
+      testspace [$TESTENV]testing/results.xml{testing}
     fi
+
+notifications:
+  email: false
+  irc: false

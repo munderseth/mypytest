@@ -1,6 +1,6 @@
-environment:
-  COVERALLS_REPO_TOKEN:
-    secure: 2NJ5Ct55cHJ9WEg3xbSqCuv0rdgzzb6pnzOIG5OkMbTndw3wOBrXntWFoQrXiMFi
+#environment:
+#  COVERALLS_REPO_TOKEN:
+#    secure: 2NJ5Ct55cHJ9WEg3xbSqCuv0rdgzzb6pnzOIG5OkMbTndw3wOBrXntWFoQrXiMFi
     # this is pytest's token in coveralls.io, encrypted
     # using pytestbot account as detailed here:
     # https://www.appveyor.com/docs/build-configuration#secure-variables
@@ -24,9 +24,9 @@ environment:
   - TOXENV: "py35-xdist"
   - TOXENV: "py35-trial"
   - TOXENV: "py27-nobyte"
-  - TOXENV: "doctesting"
-  - TOXENV: "freeze"
-  - TOXENV: "docs"
+#  - TOXENV: "doctesting"
+#  - TOXENV: "freeze"
+#  - TOXENV: "docs"
 
 install:
   - echo Installed Pythons
@@ -35,8 +35,14 @@ install:
   - if "%TOXENV%" == "pypy" call scripts\install-pypy.bat
 
   - C:\Python35\python -m pip install tox
+  - appveyor DownloadFile https://testspace-client.s3.amazonaws.com/testspace-windows-dev.zip
+  - 7z x -y testspace-windows-dev.zip
+  - testspace config url http://mark.stridespace.com
 
 build: false  # Not a C# project, build stuff at the test step instead.
 
 test_script:
   - call scripts\call-tox.bat
+
+after_test:
+  - testspace [%TOXENV%]testing/results.xml{testing}
