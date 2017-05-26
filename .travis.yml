@@ -42,7 +42,7 @@ script:
 
 after_script:
   - |
-    if [[ $TESTENV == "py"* || $TESTENV = "coveralls" ]]; then
+    if [[ $TESTENV = "py"* || $TESTENV = "coveralls" ]]; then
       testspace [$TESTENV]testing/results.xml{testing}
     fi
 

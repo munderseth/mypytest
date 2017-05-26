@@ -24,9 +24,9 @@ environment:
   - TOXENV: "py35-xdist"
   - TOXENV: "py35-trial"
   - TOXENV: "py27-nobyte"
-#  - TOXENV: "doctesting"
-#  - TOXENV: "freeze"
-#  - TOXENV: "docs"
+  - TOXENV: "doctesting"
+  - TOXENV: "freeze"
+  - TOXENV: "docs"
 
 install:
   - echo Installed Pythons
@@ -45,4 +45,8 @@ test_script:
   - call scripts\call-tox.bat
 
 after_test:
-  - testspace [%TOXENV%]testing/results.xml{testing}
+  - ps: | 
+      if (${env:TOXENV} -match 'py' -or ${env:TOXENV} -eq 'coveralls')
+      {
+         testspace [$env:TOXENV]testing/results.xml{testing}
+      }
