@@ -45,10 +45,8 @@ test_script:
   - call scripts\call-tox.bat
 
 after_test:
-  - cmd: >-
-  
-      if NOT "%TOXENV%"=="%TOXENV:py=%" (
-          
-        testspace [%TOXENV%]testing/results.xml{testing}
-        
-      )
+  - ps: | 
+      if (${env:TOXENV} -match 'py' -or ${env:TOXENV} -eq 'coverallsXX')
+      {
+        .\testspace [$env:TOXENV]testing/results.xml{testing}
+      }
