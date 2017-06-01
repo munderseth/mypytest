@@ -48,5 +48,5 @@ after_test:
   - ps: | 
       if (${env:TOXENV} -match 'py' -or ${env:TOXENV} -eq 'coveralls')
       {
-         &testspace [$env:TOXENV]testing/results.xml{testing}
+         & "testspace [$env:TOXENV]testing/results.xml{testing}""
       }
