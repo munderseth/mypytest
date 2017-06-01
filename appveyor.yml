@@ -45,7 +45,10 @@ test_script:
   - call scripts\call-tox.bat
 
 after_test:
-  - cmd: | 
+  - cmd: >-
+  
       if NOT "%TOXENV%"=="%TOXENV:py=%" (
+          
         testspace [%TOXENV%]testing/results.xml{testing}
+        
       )
