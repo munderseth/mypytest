@@ -37,7 +37,7 @@ install:
   - C:\Python35\python -m pip install tox
   - appveyor DownloadFile https://testspace-client.s3.amazonaws.com/testspace-windows-dev.zip
   - 7z x -y testspace-windows-dev.zip
-  - testspace config url http://mark.stridespace.com
+  - testspace config url http://mark.stridespace.com/munderseth:mypytest
 
 build: false  # Not a C# project, build stuff at the test step instead.
 
