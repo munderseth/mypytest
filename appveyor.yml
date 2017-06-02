@@ -46,7 +46,7 @@ test_script:
 
 after_test:
   - ps: | 
-      if (${env:TOXENV} -match 'py' -or ${env:TOXENV} -eq 'coverallsXX')
+      if (${env:TOXENV} -match 'py' -or ${env:TOXENV} -eq 'coveralls')
       {
         .\testspace "[$env:TOXENV]testing/results.xml{testing}"
       }
