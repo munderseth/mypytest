@@ -1,5 +1,5 @@
 environment:
-#  COVERALLS_REPO_TOKEN:
+  COVERALLS_REPO_TOKEN: 2lhMeg76iwTy3iLRKHw0bs1Ta0XBQUTbT
 #    secure: 2NJ5Ct55cHJ9WEg3xbSqCuv0rdgzzb6pnzOIG5OkMbTndw3wOBrXntWFoQrXiMFi
     # this is pytest's token in coveralls.io, encrypted
     # using pytestbot account as detailed here:
